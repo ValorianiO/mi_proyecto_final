@@ -1,5 +1,4 @@
 """project URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
@@ -16,16 +15,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ejemplo.views import (index, index_dos, index_tres, imc, monstrar_familiares, BuscarFamiliar)
-from blog.views import index as blog_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludar/', index),
     path('saludar/<nombre>/<apellido>/', index_dos),
-    path('mostrar-notas', index_tres),
-    path('imc/<int:peso>/<int:altura>/', imc),
-    path('mi-familia/', monstrar_familiares), 
-    path('blog/', blog_index),
+    path('mostrar-notas/', index_tres),
+    path('imc/<int:peso>/<int:altura>', imc),
+    path('mi-familia/', monstrar_familiares),
     path('mi-familia/buscar', BuscarFamiliar.as_view()),
     path('panel-familia/', include('panel_familia.urls')),
-    ]
+    path('blog/', include('blog.urls')),
+]
+
